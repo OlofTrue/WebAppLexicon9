@@ -6,3 +6,350 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<style>
+    body {
+        background-color: #393939;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        padding: 8px;
+        line-height: 1.42857143;
+        vertical-align: middle;
+        border-top: 1px solid #ddd;
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 45px;
+        height: 20px;
+        vertical-align: middle;
+        margin-top: 8px;
+    }
+
+        .switch input {
+            display: none;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #A1A6AB;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 14px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .slider {
+        background-color: mediumslateblue;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+
+    .table th, .table td {
+        border-top: none !important;
+        border-left: none !important;
+    }
+
+    .table-striped > tbody > tr:nth-of-type(2n+1) {
+        background-color: #313131;
+    }
+
+    .table-call {
+        min-height: .01%;
+        overflow-x: auto;
+        margin-top: 15px;
+        border-radius: 6px;
+    }
+
+    .nav > li > a:focus, .nav > li > a:hover {
+        text-decoration: none;
+        background-color: black;
+        color: white;
+    }
+
+
+    .table.table-bordered.vertical,
+    .table.table-bordered.vertical td,
+    .table.table-bordered.vertical th {
+        border-top: 0px solid white !important;
+        border-bottom: 0px solid white !important;
+        border-right: 0px solid white !important;
+        border-left: 0px solid white !important;
+    }
+
+    .head {
+        font-weight: normal;
+        font-size: 16px;
+    }
+
+
+
+
+
+    .radio-item input[type='radio'] {
+        visibility: hidden;
+        width: 20px;
+        height: 20px;
+        margin: 0 5px 0 5px;
+        padding: 0;
+    }
+
+    .radio-item input[type=radio]:before {
+        position: relative;
+        margin: 4px -25px -4px 0;
+        display: inline-block;
+        visibility: visible;
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        border: 2px inset rgba(150,150,150,0.75);
+        background: radial-gradient(ellipse at top left, rgb(255,255,255) 0%, rgb(250,250,250) 5%, rgb(230,230,230) 95%, rgb(225,225,225) 100%);
+        content: "";
+    }
+
+    .radio-item input[type=radio]:checked:after {
+        position: relative;
+        top: 0;
+        left: 9px;
+        display: inline-block;
+        visibility: visible;
+        border-radius: 6px;
+        width: 12px;
+        height: 12px;
+        background: radial-gradient(ellipse at top left, rgb(245,255,200) 0%, rgb(225,250,100) 5%, rgb(75,175,0) 95%, rgb(25,100,0) 100%);
+        content: "";
+    }
+
+    .radio-item input[type=radio].true:checked:after {
+        background: radial-gradient(ellipse at top left, rgb(245,255,200) 0%, rgb(225,250,100) 5%, rgb(75,175,0) 95%, rgb(25,100,0) 100%);
+    }
+
+    .radio-item input[type=radio].false:checked:after {
+        background: radial-gradient(ellipse at top left, rgb(255,225,200) 0%, rgb(250,200,150) 5%, rgb(200,25,0) 95%, rgb(100,25,0) 100%);
+    }
+
+    .radio-item label {
+        display: inline-block;
+        height: 25px;
+        line-height: 25px;
+        margin: 0;
+        padding: 0;
+    }
+</style>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+    <div class="row" style="margin-top: 50px;">
+        <div class="col-md-12 text-center">
+            <div class="outer-form">
+                <table class="table-striped table table-bordered vertical">
+                    <thead style="color: white; font-weight: normal; background-color: black;">
+                        <tr>
+                            <th>Status</th>
+                            <th class="head">Device Id</th>
+                            <th class="head">Description</th>
+                            <th class="head">IP</th>
+                            <th class="head">Owner</th>
+                            <th class="head">Location</th>
+                            <th class="head">Off/On</th>
+                        </tr>
+                    </thead>
+
+                    <tbody style="border:1px solid transparent; background-color:#242424; color:#A1A6AB; text-align: left;">
+                        <tr>
+                            <td><span class="radio-item"><input class="true" type="radio" checked onclick="return false;"></span></td>
+                            <td style="padding: 14px;">01</td>
+                            <td>WaLia</td>
+                            <td>Walia@gmail.com</td>
+                            <td>+1 222 555 6666</td>
+                            <td>Ontario, Canada</td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td><span class="radio-item"><input class="false" type="radio" checked onclick="return false;"></span></td>
+                            <td style="padding: 14px;">02</td>
+                            <td>WaLia</td>
+                            <td>Walia@gmail.com</td>
+                            <td>+1 222 555 6666</td>
+                            <td>Ontario, Canada</td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="radio-item"><input class="false" type="radio" checked onclick="return false;"></span></td>
+                            <td style="padding: 14px;">03</td>
+                            <td>WaLia</td>
+                            <td>Walia@gmail.com</td>
+                            <td>+1 222 555 6666</td>
+                            <td>Ontario, Canada</td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="radio-item"><input class="false" type="radio" checked onclick="return false;"></span></td>
+                            <td style="padding: 14px;">04</td>
+                            <td>WaLia</td>
+                            <td>Walia@gmail.com</td>
+                            <td>+1 222 555 6666</td>
+                            <td>Ontario, Canada</td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="radio-item"><input class="false" type="radio" checked onclick="return false;"></span></td>
+                            <td style="padding: 14px;">05</td>
+                            <td>WaLia</td>
+                            <td>Walia@gmail.com</td>
+                            <td>+1 222 555 6666</td>
+                            <td>Ontario, Canada</td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="radio-item"><input class="false" type="radio" checked onclick="return false;"></span></td>
+                            <td style="padding: 14px;">06</td>
+                            <td>WaLia</td>
+                            <td>Walia@gmail.com</td>
+                            <td>+1 222 555 6666</td>
+                            <td>Ontario, Canada</td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="radio-item"><input class="false" type="radio" checked onclick="return false;"></span></td>
+                            <td style="padding: 14px;">07</td>
+                            <td>WaLia</td>
+                            <td>Walia@gmail.com</td>
+                            <td>+1 222 555 6666</td>
+                            <td>Ontario, Canada</td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="radio-item"><input class="false" type="radio" checked onclick="return false;"></span></td>
+                            <td style="padding: 14px;">08</td>
+                            <td>WaLia</td>
+                            <td>Walia@gmail.com</td>
+                            <td>+1 222 555 6666</td>
+                            <td>Ontario, Canada</td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="radio-item"><input class="false" type="radio" checked onclick="return false;"></span></td>
+                            <td style="padding: 14px;">09</td>
+                            <td>WaLia</td>
+                            <td>Walia@gmail.com</td>
+                            <td>+1 222 555 6666</td>
+                            <td>Ontario, Canada</td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="radio-item"><input class="false" type="radio" checked onclick="return false;"></span></td>
+                            <td style="padding: 14px;">10</td>
+                            <td>WaLia</td>
+                            <td>Walia@gmail.com</td>
+                            <td>+1 222 555 6666</td>
+                            <td>Ontario, Canada</td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
