@@ -23,7 +23,8 @@ steps:
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/backend'
     zipAfterPublish: True
 
-- task: PublishBuildArtifact@1
+
+- task: PublishBuildArtifacts@1
   inputs:
-    PathToPublish '$(Build.ArtifactStagingDirectory)'
-    artifactName 'webApiArtipact'
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: webApiArtipact
