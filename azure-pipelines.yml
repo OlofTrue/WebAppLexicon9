@@ -19,6 +19,11 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: publish
-    publishWebProjects: false
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/backend'
-    zipAfterPublish: true
+    publishWebProjects: False
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/backend'
+    zipAfterPublish: True
+
+- task: PublishBuildArtifact@1
+  inputs:
+    PathToPublish '$(Build.ArtifactStagingDirectory)'
+    artifactName 'webApiArtipact'
