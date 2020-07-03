@@ -3,15 +3,20 @@
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
-trigger:
-- master
+#trigger:
+#- master
 
-pool:
-  vmImage: 'ubuntu-latest'
+#pool:
+#  vmImage: 'ubuntu-latest'
 
-variables:
-  buildConfiguration: 'Release'
+#variables:
+#  buildConfiguration: 'Release'
 
 steps:
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
+#- script: dotnet build --configuration $(buildConfiguration)
+#  displayName: 'dotnet build $(buildConfiguration)'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: webApiArtipact

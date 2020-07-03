@@ -23,6 +23,12 @@ namespace WebAppLexicon9.Controllers
             return View();
         }
 
+        public static string[] GetTmpArrayIOT()
+        {
+            string[] weekDays = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
+            return weekDays;
+        }
+
         public IActionResult Privacy()
         {
             return View();
