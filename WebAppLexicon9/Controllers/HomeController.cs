@@ -22,12 +22,10 @@ namespace WebAppLexicon9.Controllers
         {
             return View();
         }
+        public static string[] Get_WeekDayArray() => new string[] { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
 
-        public static string[] GetTmpArrayIOT()
-        {
-            string[] weekDays = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
-            return weekDays;
-        }
+        [HttpGet]
+        public static IEnumerable<string> Get_WeekDayList() => Get_WeekDayArray().ToList();
 
         public IActionResult Privacy()
         {
